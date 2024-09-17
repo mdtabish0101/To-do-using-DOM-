@@ -1,0 +1,46 @@
+To-Do App
+Overview
+This is a simple to-do application developed using HTML, CSS, and JavaScript. The primary objective of building this app was to gain a better understanding of the Document Object Model (DOM) manipulation in JavaScript. Through this app, I explored how to dynamically create, update, and manage HTML elements using JavaScript.
+
+Features
+Add New Tasks: You can add a new to-do item by entering the task title and description.
+Mark Tasks as Completed: Each task has a "Mark as Done" button that, when clicked, updates the task's appearance and status.
+Dynamic DOM Manipulation: The app dynamically generates new task elements using JavaScript, allowing you to interact with the app in real-time without refreshing the page.
+Basic Animations: Smooth animations are added for task creation and marking tasks as completed.
+Tech Stack
+HTML: Used to create the basic structure of the app.
+CSS: Applied to style the app, including some custom animations for user interactions.
+JavaScript: Used to manipulate the DOM, handle task creation, and manage task completion status.
+How It Works
+Add a Task:
+
+The user enters a task title and description.
+When the "Add todo" button is clicked, a new task is dynamically added to the task list.
+Each task consists of the title, description, and a "Mark as Done" button.
+Mark Task as Completed:
+
+Once a task is completed, the user can click on the "Mark as Done" button.
+The task's background color changes to indicate that it is completed, and the button label changes to "Completed."
+CSS Animations:
+
+When a task is added, a smooth fade-in and upward movement animation is triggered.
+Upon marking a task as completed, a color transition animation gives feedback to the user.
+Code Highlights
+DOM Manipulation: The app uses document.createElement() and appendChild() to dynamically add new tasks to the task list.
+Event Handling: Events such as clicks are handled using JavaScript functions, including marking tasks as completed.
+CSS Animations: Subtle animations using @keyframes to provide a more polished user experience.
+Learning Goals
+This app was built to enhance my understanding of:
+
+How to create and modify elements in the DOM using JavaScript.
+Event handling and how user actions trigger changes in the DOM.
+CSS animations and transitions for creating interactive user interfaces.
+Future Improvements
+Task Persistence: Add functionality to store tasks in local storage so they persist after the page is refreshed.
+Task Deletion: Add a feature to delete tasks.
+Task Categories: Organize tasks by categories or priorities.
+Responsive Design: Ensure the app works well on mobile devices.
+How to Use
+Clone the repository to your local machine.
+Open the index.html file in your preferred web browser.
+Enter a task title and description, then click "Add todo" to see the task appear in the task list.
