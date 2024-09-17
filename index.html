@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+</head>
+<style>
+    /* Reset margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styling */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Container for the form and todos */
+.container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+/* Input fields styling */
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    background-color: #e9ecef;
+}
+
+/* Add todo button styling */
+button.add-todo {
+    width: 100%;
+    padding: 15px;
+    background-color: #3b82f6;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.add-todo:hover {
+    background-color: #2563eb;
+    transform: translateY(-2px);
+}
+
+button.add-todo:active {
+    transform: translateY(0);
+}
+
+/* Todo item styling */
+#container div {
+    background-color: #f8fafc;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards ease-out;
+}
+
+/* Title and description styling */
+#container div div {
+    flex: 1;
+}
+
+#container div div:first-child {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+#container div div:nth-child(2) {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 5px;
+}
+
+/* Button for marking todos as done */
+#container div button {
+    padding: 10px 20px;
+    background-color: #10b981;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#container div button:hover {
+    background-color: #059669;
+    transform: scale(1.05);
+}
+
+/* Animating the fade in and upward movement of todo items */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style for todos marked as done */
+#container div.done {
+    background-color: #d1fae5;
+    animation: markDoneAnimation 0.6s ease forwards;
+}
+
+@keyframes markDoneAnimation {
+    0% {
+        background-color: #f8fafc;
+    }
+    100% {
+        background-color: #d1fae5;
+    }
+}
+
+</style>
+<script>
+    let globalId = 1;
+    function markAsDone(todoId) {
+    const parent = document.getElementById(todoId);
+    parent.classList.add("marked-done");
+    parent.children[2].innerHTML = "Done!";
+}
+
+    function createChild(title, description, id){
+        const child = document.createElement("div");
+        const firstGrandChild = document.createElement("div");
+        firstGrandChild.innerHTML = title;
+        const secGrandChild = document.createElement("div");
+        secGrandChild.innerHTML = description;
+        const thirdGrandChild = document.createElement("button");
+        thirdGrandChild.innerHTML = "Mark as Done";
+        thirdGrandChild.setAttribute("onclick", `markAsDone(${id})`);
+        child.appendChild(firstGrandChild);
+        child.appendChild(secGrandChild);
+        child.appendChild(thirdGrandChild);
+        child.setAttribute("id", id);
+        return child;
+    }
+    function addTodo(){
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const parent = document.getElementById("container");
+
+        parent.appendChild(createChild(title, description, globalId++));
+    }
+</script>
+<body>
+    <div class="container">
+        <input type="text" id="title" placeholder="title" autocomplete="off"><br></br>
+        <input type="text" id="description" placeholder="description" autocomplete="off"><br></br>
+        <button class="add-todo" onclick="addTodo()">Add todo</button>
+        <div id="container"></div>
+    </div>
+</body>
+
+</html>
